@@ -47,18 +47,18 @@ function update_cart_count() {
 // run update_cart_count() on page load
 update_cart_count();
 
-// fade out success and danger alerts after 3 seconds if they exist
+// fade out success and danger alerts after 5 seconds if they exist
 let success_alert = document.getElementsByClassName("success");
 let danger_alert = document.getElementsByClassName("danger");
 
 if (success_alert.length > 0) {
     setTimeout(function () {
         success_alert[0].style.display = "none";
-    }, 3000);
+    }, 5000);
 }
 
 if (danger_alert.length > 0) {
     setTimeout(function () {
         danger_alert[0].style.display = "none";
-    }, 3000);
+    }, 5000);
 }

@@ -139,6 +139,25 @@ def get_cart_count():
     cur.close()
     # return json response
     return jsonify({'cart_count': len(cart)})
+
+# cart
+@app.route('/cart')
+def cart():
+    # get looged in user id
+    user_id = session['user_id']
+    # create cursor
+    cur = db.connection.cursor()
+    # execute query
+    # get product_id from cart and get the product details from products table
+    cur.execute("SELECT cart.quantity, products.* FROM cart JOIN products ON cart.product_id=products.id WHERE cart.user_id=%s", [user_id])
+    cart = cur.fetchall()
+    # close connection
+    cur.close()
+    # make cart a dictionary
+    cart = dict(enumerate(cart))
+    # calculate total
+    total = sum(item[5] * item[0] for item in cart.values())
+    return render_template('cart.html', cart=cart, total=total)
     
 
 if __name__ == '__main__':

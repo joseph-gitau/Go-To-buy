@@ -22,6 +22,20 @@
             </ul>
         </nav>
     </header>
+    {% for item in cart %}
+                    <tr>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[4] }}</td>
+                        <td>1</td>
+                        <td>{{ item[4] * 1 }}</td>
+                        <td>
+                            <form action="/cart/delete/{{ item.id }}" method="post">
+                                <input type="hidden" name="_method" value="delete" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
 </body>
 
 </html>

@@ -20,12 +20,7 @@
                 <li>
                     <a href="{{ url_for('index') }}">Home</a>
                 </li>
-                <li>
-                    <a href="temp.php">Temp</a>
-                </li>
-                <li>
-                    <a href="temp2.php">Temp2</a>
-                </li>
+               
                 <!-- register , login -->
                 <!-- If user is logged in-->
                 {% if 'logged_in' in session %}
@@ -43,7 +38,7 @@
             </ul>
             <!-- Cart basket-->
             <div class="cart">
-                <a href="/cart">
+                <a href="{{url_for('cart')}}">
                     <img src="{{ url_for('static', filename='images/cart.png') }}" alt="cart" />
                     <span id="cart_count">0</span>
                 </a>
