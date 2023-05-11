@@ -1,0 +1,96 @@
+{% extends 'template.html' %} {% block content %}
+<!-- Hero section -->
+<!--
+construct a website for an online shop. The website should allow the customers to browse through the available goods (or
+services), view their price and all other relevant information, allow the customers to add the goods to the shopping
+basket, and finally view the basket (display all selected items and their total price) and allow the customer to enter
+payment details.
+-->
+
+<div class="hero">
+    <div class="container">
+        <div class="main-message">
+            <h1>Go-To Buy</h1>
+            <p>Go-To Buy is an online shop that allows you to browse through the available goods (or services), view
+                their
+                price and all other relevant information, allow the customers to add the goods to the shopping basket,
+                and
+                finally view the basket (display all selected items and their total price) and allow the customer to
+                enter
+                payment details.</p>
+            {% if 'logged_in' in session %}
+            <a href="#products" class="cta btn">View products</a>
+            {% else %}
+            <a href="login.php" class="cta btn">Login</a>
+            <a href="register.php" class="cta btn">Register</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- End of Hero section -->
+<!-- Sort section-->
+<!-- sort the items according to name, price or environmental impact-->
+<div class="sort">
+    <div class="container">
+        <h2 class="title">Sort</h2>
+        <div class="sort-list">
+            <div class="sort-item">
+                <div class="sort-img">
+                    <img src="static/images/1.jpg" alt="sort image">
+                </div>
+                <div class="sort-info">
+                    <h3>Sort by Name</h3>
+                    <p>Sort the items according to name</p>
+                    <a href="#" class="cta btn">Sort</a>
+                </div>
+            </div>
+            <div class="sort-item">
+                <div class="sort-img">
+                    <img src="static/images/1.jpg" alt="sort image">
+                </div>
+                <div class="sort-info">
+                    <h3>Sort by Price</h3>
+                    <p>Sort the items according to price</p>
+                    <a href="#" class="cta btn">Sort</a>
+                </div>
+            </div>
+            <div class="sort-item">
+                <div class="sort-img">
+                    <img src="static/images/1.jpg" alt="sort image">
+                </div>
+                <div class="sort-info">
+                    <h3>Sort by Environmental Impact</h3>
+                    <p>Sort the items according to environmental impact</p>
+                    <a href="#" class="cta btn">Sort</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Products listing-->
+<!-- Image, name, price, environmental impact-->
+<div class="products" id="products">
+    <div class="container">
+        <h2 class="title">Products</h2>
+        <div class="product-list">
+            {% for product in products %}
+            <div class="product-item">
+                <div class="product-img">
+                    <a href="/view_product/{{ product[0] }}">
+                        <img src="{{ url_for('static', filename='images/products/' + product[3]) }}"
+                            alt="{{ product[1] }}">
+                    </a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="/view_product/{{ product[0] }}"> {{ product[1]}}</a></h3>
+                    <p class="price">Price: ${{ product[4]}}</p>
+                    <p>Environmental Impact: {{ product[6]}}</p>
+                    <a href="#" data-product_id="{{ product[0] }}" class="cta btn add_to_cart">Add to
+                        Cart</a>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    {% endblock %}

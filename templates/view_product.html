@@ -1,0 +1,22 @@
+{% extends 'template.html' %} {% block content %}
+<div class="view_product">
+    <div class="container">
+        <!-- Title-->
+        <h2 class="title">{{ product[1] }}</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='images/products/' + product[3]) }}" alt="{{ product[1] }}"
+                    class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <h2><b> Product name:</b> {{ product[1] }}</h2>
+                <p><b>Product description:</b> {{ product[2] }}</p>
+                <p><b>Price:</b> $ {{ product[4] }}</p>
+                <p><b>Environmental Impact:</b> {{ product[6] }}</p>
+                <a href="add-to-cart.php?id={{ product.id }}" class="cta btn">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
