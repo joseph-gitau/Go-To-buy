@@ -19,14 +19,32 @@ app.config['SECRET_KEY'] = 'thisissecret'
 db = MySQL(app)
 
 # Routes
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
+    # check if get sort is set in url
+    if request.args.get('sort') and request.args.get('direction'):
+        sort = request.args.get('sort')
+        direction = request.args.get('direction')
+        # call sort_products function
+        products = sort_products(sort, direction)
+    else:
+        # fetch all products
+        cur = db.connection.cursor()
+        cur.execute("SELECT * FROM products")
+        products = cur.fetchall()
+        cur.close()
+    return render_template('index.html', products=products)
+
+# function to sort products, passing in the sort type and direction
+def sort_products(sort, direction):
     # fetch all products
     cur = db.connection.cursor()
-    cur.execute("SELECT * FROM products")
+    cur.execute("SELECT * FROM products ORDER BY {} {}".format(sort, direction))
     products = cur.fetchall()
     cur.close()
-    return render_template('index.html', products=products)
+    return products
+
+
 
 # /view_product/<int:id>
 @app.route('/view_product/<int:id>')

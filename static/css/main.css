@@ -505,49 +505,18 @@ table tbody tr td a:hover {
   height: 30px;
   overflow: hidden;
 }
-.sort .sort-list .sort-item .sort-img img {
+.sort .sort-list .sort-item .sort-img i {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
-.sort .sort-list .sort-item .sort-img:hover {
-  transform: scale(1.1);
-}
-.sort .sort-list .sort-item .sort-img:hover img {
-  transform: scale(1.1);
-}
-.sort .sort-list .sort-item .sort-img::before {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background: #ff6a00;
-  z-index: -1;
+  font-size: 1.5em;
+  color: #000;
   transition: 0.6s;
 }
-.sort .sort-list .sort-item .sort-img:hover::before {
-  transform: scaleX(1.1);
-  transform-origin: right;
-}
-.sort .sort-list .sort-item .sort-img::after {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  z-index: -1;
-  transition: 0.6s;
-}
-.sort .sort-list .sort-item .sort-img:hover::after {
-  transform: scaleX(1.1);
-  transform-origin: left;
+.sort .sort-list .sort-item .sort-img i:hover {
+  color: #ff6a00;
 }
 .sort .sort-list .sort-item .sort-info {
   position: relative;
@@ -737,4 +706,55 @@ footer {
   position: relative;
   width: 100%;
   text-align: center;
+}
+
+/* Responsiveness */
+/* Styles for all devices */
+
+/* Style for small devices */
+@media (max-width: 767px) {
+  /* CSS rules for mobile devices go here */
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    width: 100% !important;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  header {
+    padding: 10px;
+  }
+}
+
+/* Styles for medium-sized devices */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* CSS rules for medium-sized devices go here */
+  body {
+    font-size: 16px;
+  }
+  header {
+    padding: 0;
+  }
+
+  .container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+}
+
+/* Styles for large devices */
+@media (min-width: 1025px) {
+  /* CSS rules for large devices go here */
+  body {
+    font-size: 18px;
+  }
+
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+  }
 }
