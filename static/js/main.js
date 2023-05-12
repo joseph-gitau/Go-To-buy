@@ -62,3 +62,32 @@ if (danger_alert.length > 0) {
         danger_alert[0].style.display = "none";
     }, 5000);
 }
+
+// remove_item_from_cart
+let remove_item_from_cart_buttons = document.getElementsByClassName("remove_item_from_cart");
+
+for (let i = 0; i < remove_item_from_cart_buttons.length; i++) {
+    let remove_item_from_cart_button = remove_item_from_cart_buttons[i];
+    remove_item_from_cart_button.addEventListener("click", function () {
+        // get product id from this a href
+        product_id = this.getAttribute("data-id");
+        // send xhr request to server, to check if user is logged in
+        // confirm if user wants to remove item from cart
+        if (confirm("Are you sure you want to remove this item from cart?")) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/remove_item_from_cart", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify({ "product_id": product_id }));
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    // if user is logged in, add item to cart
+                    alert("Item removed from cart");
+                    // update cart count
+                    update_cart_count();
+                    // reload page
+                    window.location.reload();
+                }
+            }
+        }
+    });
+}

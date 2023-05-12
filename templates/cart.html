@@ -33,7 +33,8 @@ b)	Allow the customer to delete an item (or all items) from the shopping basket 
                             <td>{{ item[0] }}</td>
                             <td>{{ item[5] * item[0] }}</td>
                             <td>
-                                <a href="/cart/remove/{{ key }}" class="btn btn-danger">Remove</a>
+                                <button data-id="{{item[1]}}"
+                                    class="btn btn-danger remove_item_from_cart">Remove</button>
                             </td>
                         </tr>
                         {% endfor %}
@@ -49,7 +50,7 @@ b)	Allow the customer to delete an item (or all items) from the shopping basket 
                         </tr>
                     </tfoot>
                 </table>
-                <a href="/cart/checkout" class="btn btn-primary cta">Checkout</a>
+                <a href="{{url_for('checkout')}}" class="btn btn-primary cta">Checkout</a>
             </div>
         </div>
     </div>

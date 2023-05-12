@@ -1,0 +1,74 @@
+{% extends 'template.html' %} {% block content %}
+<!-- Checkout page -->
+<!-- 
+a)	As the user steps through the fields of the form, help messages must appear explaining what information needs to be entered in each field.
+5)	Do not implement an actual checkout or secure payment mechanism. Instead, implement a basic validation for the payment form to check that, when the form is submitted, 
+a)	the entered credit card number is a 16 digit number (you may permit dashes and spaces), 
+b)	that none of the other required fields are empty, 
+c)	plus any other validation checks you think necessary.
+If the submitted form validates correctly, present a page saying that checkout was successful. If there are errors in the form (e.g. the credit card number field contains other text) you may either prevent the form from submitting, or report an error after it submits.
+ -->
+<div class="cart-view">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="title">Checkout</h1>
+                <form id="checkout-form" action="/checkout-now" method="post"
+                    onSubmit='return confirm("Are you sure you want to Checkout, ${{total}}")'>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name"
+                            required>
+                        <span class="tooltiptext">Enter your full name</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
+                            required>
+                        <span class="tooltiptext">Enter your email</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" class="form-control" id="address" name="address"
+                            placeholder="Enter your address" required>
+                        <span class="tooltiptext">Enter your address</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="card_number">Credit card number:</label>
+                        <input type="text" class="form-control" id="card_number" name="card_number"
+                            placeholder="Enter your credit card number" required
+                            title="Please enter your credit card number without any spaces or dashes.">
+                        <!-- Tooltip -->
+                        <span class="tooltiptext">Please enter your credit card number without any spaces or
+                            dashes.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="expiry_date">Expiry date:</label>
+                        <input type="text" class="form-control" id="expiry_date" name="expiry_date"
+                            placeholder="Enter your expiry date" required>
+                        <span class="tooltiptext">Enter the expiry date of your card</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV:</label>
+                        <input type="text" class="form-control" id="cvv" name="cvv" placeholder="Enter your CVV"
+                            required>
+                        <span class="tooltiptext">Enter the CVV of your card, found at the back of the card, a 3 digit
+                            number.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="total_price">Total price:</label>
+                        <input type="text" class="form-control" id="total_price" name="total_pr" value="{{ total }}"
+                            disabled>
+                        <span class="tooltiptext">Total value of your cart items to checkout in $</span>
+                        <!-- Hidden input for sending json cart items -->
+                        <input type="hidden" name="total" value="{{ total }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Confirm Payment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

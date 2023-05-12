@@ -1,0 +1,45 @@
+{% extends 'template.html' %} {% block content %}
+<!-- Orders page -->
+<div class="cart-view">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="title">Your orders</h1>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Order Date</th>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if orders|length == 0 %}
+                        <tr>
+                            <td colspan="6">You have no orders</td>
+                        </tr>
+                        {% else %}
+                        {% for key, order in orders.items() %}
+                        <tr>
+                            <td>{{ order[0] }}</td>
+                            <td>{{ order[1] }}</td>
+                            <td>{{ order[4] }}</td>
+                            <td>{{ order[3] }}</td>
+                            <td>{{ order[5] }}</td>
+                            <td><img src="{{ url_for('static', filename='images/products/' + order[6]) }}"
+                                    alt="{{ order[4] }}" height="50"></td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
