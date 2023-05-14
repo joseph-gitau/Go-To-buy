@@ -102,6 +102,7 @@ def login():
             return redirect(url_for('index'))
         else:
             error = 'Invalid login'
+            flash(error, 'danger')
             return render_template('login.html', error=error)
     return render_template('login.html')
 
@@ -293,6 +294,20 @@ def orders():
     # make orders a dictionary
     orders = dict(enumerate(orders))
     return render_template('orders.html', orders=orders)
+
+# search
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    if request.method == 'GET':
+        search_term = request.args.get('q')
+        # create cursor
+        cur = db.connection.cursor()
+        # execute query
+        cur.execute("SELECT * FROM products WHERE p_name LIKE %s", ['%' + search_term + '%'])
+        products = cur.fetchall()
+        # close connection
+        cur.close()
+        return render_template('search.html', products=products, search_term=search_term)
     
 
 if __name__ == '__main__':

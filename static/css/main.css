@@ -82,6 +82,57 @@ nav ul li a:hover::before {
   transform: scaleX(1);
   transform-origin: left;
 }
+/* Search */
+nav form {
+  position: relative;
+  height: 40px;
+  width: 300px;
+  background: #fff;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.6s;
+}
+nav form input {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding: 0 60px 0 20px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1em;
+  color: #000;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: 0.6s;
+}
+nav form button {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 60px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1.2em;
+  color: #000;
+  cursor: pointer;
+  transition: 0.6s;
+}
+nav form button:hover {
+  color: #ff6a00;
+}
+nav form input:focus,
+nav form input:valid {
+  color: #ff6a00;
+}
+.active {
+  display: flex;
+}
 /* cart */
 /* cart display on right end */
 .cart {
@@ -141,16 +192,45 @@ nav ul li a:hover::before {
   width: 100%;
   z-index: 3;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
-.hero .container .message {
+.hero .container .message,
+.hero .container .partner-adverts {
   position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.hero .container .partner-adverts {
+  height: 200px;
+  width: 70%;
+  margin-top: 30px;
+}
+.hero .container .partner-adverts .advert-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero .container .partner-adverts .advert-item a {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero .container .partner-adverts .advert-item a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .hero .container .message h1 {
   color: #fff;
   font-size: 5em;
@@ -726,6 +806,29 @@ footer {
   header {
     padding: 10px;
   }
+  nav forms {
+    display: none;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background: #000;
+    padding: 10px;
+  }
+  nav ul li {
+    margin: 10px 0;
+  }
+  nav ul li a {
+    color: #fff;
+  }
+  nav ul li a:hover {
+    color: #ff6a00;
+  }
 }
 
 /* Styles for medium-sized devices */
@@ -743,6 +846,9 @@ footer {
     margin: 0 auto;
     padding: 0 10px;
   }
+  .menu-toggle {
+    display: none;
+  }
 }
 
 /* Styles for large devices */
@@ -756,5 +862,8 @@ footer {
     width: 80%;
     margin: 0 auto;
     padding: 10px;
+  }
+  .menu-toggle {
+    display: none;
   }
 }

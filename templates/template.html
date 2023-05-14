@@ -18,11 +18,11 @@
             <div class="logo">
                 <h4>Go-To Buy</h4>
             </div>
-            <ul>
+            <ul class="navigation">
                 <li>
                     <a href="{{ url_for('index') }}">Home</a>
                 </li>
-               
+
                 <!-- register , login -->
                 <!-- If user is logged in-->
                 {% if 'logged_in' in session %}
@@ -37,6 +37,15 @@
                     <a href="{{ url_for('login')}}">Login</a>
                 </li>
                 {% endif %}
+                <!-- Search input with icon -->
+                <li>
+                    <form action="{{ url_for('search') }}" method="GET">
+                        <input type="text" name="q" placeholder="Search a product..." />
+                        <button type="submit" name="submit-search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </li>
             </ul>
             <!-- Cart basket-->
             <div class="cart">
@@ -47,6 +56,11 @@
             </div>
 
         </nav>
+        <!-- Hamburger menu -->
+        <div class="menu-toggle">
+            <i class="fas fa-bars" id="menu-bars"></i>
+        </div>
+
     </header>
 
     {% with messages = get_flashed_messages(with_categories = true) %} {% if
